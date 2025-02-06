@@ -79,10 +79,9 @@ int is_keyword(const char *str) {
     // Control flow keywords
     if (strcmp(str, "if") == 0)      return 1;
     if (strcmp(str, "else") == 0)   return 1;
-    if (strcmp(str, "while") == 0)   return 1;
-    if (strcmp(str, "for") == 0)   return 1;
     if (strcmp(str, "repeat") == 0)  return 1;
     if (strcmp(str, "until") == 0)   return 1;
+    if (strcmp(str, "for") == 0)   return 1;
     // Function & scope Keywords
     if (strcmp(str, "function") == 0)   return 1;
     if (strcmp(str, "return") == 0)   return 1;
@@ -91,6 +90,8 @@ int is_keyword(const char *str) {
     if (strcmp(str, "int") == 0)   return 1;
     if (strcmp(str, "float") == 0)   return 1;
     if (strcmp(str, "char") == 0)   return 1;
+    if (strcmp(str, "string") == 0)   return 1;
+    if (strcmp(str, "const") == 0)   return 1;
     return 0; 
 }
 
@@ -285,8 +286,9 @@ Token get_next_token(const char *input, int *pos) {
         if (
             (c == '=' && next_c == '=') ||
             (c == '!' && next_c == '=') ||
+            (c == '|' && next_c == '|') ||
             (c == '<' && next_c == '=') ||
-            (c == '>' && next_c == '=')) {
+            (c == '>' && next_c == '=') ) {
             token.lexeme[idx++] = next_c;
             (*pos)++;
         }
@@ -315,7 +317,7 @@ Token get_next_token(const char *input, int *pos) {
 // This is a basic lexer that handles numbers (e.g., "123", "456"), basic operators (+ and -), consecutive operator errors, whitespace and newlines, with simple line tracking for error reporting.
 
 int main() {
-    const char *input = "123 + 456 - 789\n1++2\nint x = 2\ni $= 2\nmy_var = \"Hello\\nWorld\";\nif (x == 5) {}\n"; // Test with multi-line input
+    const char *input = "123 + 456 - 789\n1++2\nint x = 2\ni $= 2\nmy_var = \"Hello\\nWorld\";\nif (x == 5 && y == 3) {}\nint a = &b\nint j = i++;\n x = !y;"; // Test with multi-line input
     int position = 0;
     Token token;
 
