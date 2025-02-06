@@ -25,3 +25,10 @@
 - `ERROR_CONSECUTIVE_OPERATORS`: When two consecutive operators that are not valid together appear (e.g., `++`, `**`).
 - `ERROR_UNKNOWN_ESCAPE_SEQUENCE`: When an invalid escape sequence is found in a string (e.g., `"Hello\qWorld"`).
 - `ERROR_UNTERMINATED_STRING`: When a string is opened with " but not closed before the end of the input.
+
+**Additional Changes**
+- `is_keyword(str)` was expanded to include:
+  - Control flow keywords (e.g., `if`, `while`, `repeat`). 
+  - Function & Scope keywords (e.g.,`function`, `return`, `void`).
+  - Variable/data type keywords (e.g., `int`).S
+- Returning 1 if any of the keywords find a match.
