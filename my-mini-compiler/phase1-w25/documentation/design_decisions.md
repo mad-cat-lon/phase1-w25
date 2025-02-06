@@ -30,5 +30,5 @@
 - `is_keyword(str)` was expanded to include:
   - Control flow keywords (e.g., `if`, `while`, `repeat`). 
   - Function & Scope keywords (e.g.,`function`, `return`, `void`).
-  - Variable/data type keywords (e.g., `int`).S
+  - Variable/data type keywords (e.g., `int`).
 - Returning 1 if any of the keywords find a match.
