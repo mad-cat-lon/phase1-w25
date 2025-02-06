@@ -1,0 +1,42 @@
+Input: $
+Expected Output: Lexical Error at line 1: Invalid character '$'
+
+Lexical Error at line 1: Invalid character '$'
+
+Explanation: Ensures that unrecognized symbols trigger an error.
+
+2. Invalid Number Format
+
+Input: 123abc
+Expected Output: Lexical Error at line 1: Invalid number format
+
+Lexical Error at line 1: Invalid number format
+
+Explanation: Ensures that numbers mixed with alphabetic characters trigger an error.
+
+3. Consecutive Operators Error
+
+Input: 1++2
+Expected Output: Lexical Error at line 1: Consecutive operators not allowed
+
+Lexical Error at line 1: Consecutive operators not allowed
+
+Explanation: Ensures that the lexer catches consecutive operators and prevents invalid expressions.
+
+4. Unknown Escape Sequence in String
+
+Input: "Hello\xWorld"
+Expected Output: Lexical Error at line 1: Unknown escape sequence
+
+Lexical Error at line 1: Unknown escape sequence
+
+Explanation: Ensures that unrecognized escape sequences within string literals trigger an error.
+
+5. Unterminated String Literal
+
+Input: "This is unterminated
+Expected Output: Lexical Error at line 1: Unterminated string
+
+Lexical Error at line 1: Unterminated string
+
+Explanation: Ensures that string literals that are not properly closed with a " character result in an error.

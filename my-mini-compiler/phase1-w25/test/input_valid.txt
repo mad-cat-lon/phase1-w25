@@ -1,0 +1,86 @@
+1. Simple Integer Parsing
+Input: 123
+Expected Output:
+
+Token: NUMBER | Lexeme: '123' | Line: 1
+
+Explanation: This test ensures that single numerical values are recognized and tokenized correctly.
+
+2. Keyword Recognition
+
+Input: if repeat until
+Expected Output:
+
+Token: KEYWORD | Lexeme: 'if' | Line: 1
+Token: KEYWORD | Lexeme: 'repeat' | Line: 1
+Token: KEYWORD | Lexeme: 'until' | Line: 1
+
+Explanation: Confirms that the lexer correctly identifies known keywords.
+
+3. Identifier Handling
+
+Input: variable_name xYz_123
+Expected Output:
+
+Token: IDENTIFIER | Lexeme: 'variable_name' | Line: 1
+Token: IDENTIFIER | Lexeme: 'xYz_123' | Line: 1
+
+Explanation: Ensures that valid identifiers are recognized properly.
+
+4. Operator Recognition
+
+Input: + - * / = == != <= >=
+Expected Output:
+
+Token: OPERATOR | Lexeme: '+' | Line: 1
+Token: OPERATOR | Lexeme: '-' | Line: 1
+Token: OPERATOR | Lexeme: '*' | Line: 1
+Token: OPERATOR | Lexeme: '/' | Line: 1
+Token: OPERATOR | Lexeme: '=' | Line: 1
+Token: OPERATOR | Lexeme: '==' | Line: 1
+Token: OPERATOR | Lexeme: '!=' | Line: 1
+Token: OPERATOR | Lexeme: '<=' | Line: 1
+Token: OPERATOR | Lexeme: '>=' | Line: 1
+
+Explanation: Verifies that single-character and multi-character operators are correctly recognized.
+
+5. String Literal Handling
+
+Input: "Hello, World!"
+Expected Output:
+
+Token: STRING_LITERAL | Lexeme: 'Hello, World!' | Line: 1
+
+Explanation: Tests correct parsing of string literals enclosed in quotes.
+
+6. Delimiters Handling
+
+Input: { } ( ) [ ] ;
+Expected Output:
+
+Token: DELIMITER | Lexeme: '{' | Line: 1
+Token: DELIMITER | Lexeme: '}' | Line: 1
+Token: DELIMITER | Lexeme: '(' | Line: 1
+Token: DELIMITER | Lexeme: ')' | Line: 1
+Token: DELIMITER | Lexeme: '[' | Line: 1
+Token: DELIMITER | Lexeme: ']' | Line: 1
+Token: DELIMITER | Lexeme: ';' | Line: 1
+
+Explanation: Ensures that recognized delimiters are correctly tokenized.
+
+7. Comment Handling
+
+Input:
+
+// This is a comment
+123
+/* Multi-line
+   comment */
+456
+
+Expected Output:
+
+Token: NUMBER | Lexeme: '123' | Line: 2
+Token: NUMBER | Lexeme: '456' | Line: 4
+
+Explanation: Verifies that single-line (//) and multi-line (/* ... */) comments are ignored.

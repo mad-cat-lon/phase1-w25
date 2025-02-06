@@ -317,7 +317,23 @@ Token get_next_token(const char *input, int *pos) {
 // This is a basic lexer that handles numbers (e.g., "123", "456"), basic operators (+ and -), consecutive operator errors, whitespace and newlines, with simple line tracking for error reporting.
 
 int main() {
-    const char *input = "123 + 456 - 789\n1++2\nint x = 2\ni $= 2\nmy_var = \"Hello\\nWorld\";\nif (x == 5 && y == 3) {}\nint a = &b\nint j = i++;\n x = !y;"; // Test with multi-line input
+    const char *input = 
+    "123\n"
+    "if repeat until\n"
+    "variable_name xYz_123\n"
+    "+ - * / = == != <= >=\n"
+    "\"Hello, World!\"\n"
+    "{ } ( ) [ ] ;\n"
+    "// This is a comment\n"
+    "123\n"
+    "/* Multi-line\n"
+    "   comment */\n"
+    "456\n"
+    "$\n"
+    "123abc\n"
+    "1++2\n"
+    "\"Hello\\xWorld\"\n"
+    "\"This is unterminated\n";
     int position = 0;
     Token token;
 
