@@ -5,6 +5,7 @@
 #include <string.h>
 #include "../../include/tokens.h"
 
+
 // Line tracking
 static int current_line = 1;
 static char last_token_type = 'x'; // For checking consecutive operators
@@ -316,11 +317,55 @@ Token get_next_token(const char *input, int *pos) {
 
 // This is a basic lexer that handles numbers (e.g., "123", "456"), basic operators (+ and -), consecutive operator errors, whitespace and newlines, with simple line tracking for error reporting.
 
-int main() {
-    const char *input = "123 + 456 - 789\n1++2\nint x = 2\ni $= 2\nmy_var = \"Hello\\nWorld\";\nif (x == 5 && y == 3) {}\nint a = &b\nint j = i++;\n x = !y;"; // Test with multi-line input
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    FILE *file = fopen(argv[1], "r");
+    if (file == NULL) {
+        perror("Error Opening File");
+        return 1;
+    }
+    
+    if (fseek(file, 0, SEEK_END) != 0) {
+        perror("Error seeking file");
+        fclose(file);
+        return 1;
+    }
+    
+    long file_size = ftell(file);
+    if (file_size == -1) {
+        perror("Error getting file size");
+        fclose(file);
+        return 1;
+    }
+    rewind(file);
+    
+
+    char *input = (char *)malloc(file_size + 1);
+    if (input == NULL) {
+        perror("Memory allocation failed");
+        fclose(file);
+        return 1;
+    }
+    
+
+    size_t charRead = fread(input, 1, file_size, file);
+    if (charRead < (size_t)file_size && ferror(file)) {
+        perror("Error reading file");
+        free(input);
+        fclose(file);
+        return 1;
+    }
+    
+    input[charRead] = '\0';  
+    
+    fclose(file);
     int position = 0;
     Token token;
-
+    
     printf("Analyzing input:\n%s\n\n", input);
 
     do {
@@ -328,5 +373,6 @@ int main() {
         print_token(token);
     } while (token.type != TOKEN_EOF);
 
+    free(input);
     return 0;
 }
