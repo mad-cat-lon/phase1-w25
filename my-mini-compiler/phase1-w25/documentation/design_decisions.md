@@ -1,5 +1,5 @@
 ## Lexer Design Decisions
-**How did identifiers and keywords were distinguished**
+**How ertr identifiers and keywords were distinguished**
 1. Both identifiers and keywords were intially categorized using the same method.
     If a token starts with a letter (`isalpha(c)`) or an underscore(`'_'`), it is considered either an identifier or a keyword.
 2. The lexer then reads the subsequent characters or underscores extracting the full lexeme.
@@ -28,7 +28,13 @@
 
 **Additional Changes**
 - `is_keyword(str)` was expanded to include:
-  - Control flow keywords (e.g., `if`, `while`, `repeat`). 
+  - Control flow keywords (e.g., `else, for`). 
   - Function & Scope keywords (e.g.,`function`, `return`, `void`).
   - Variable/data type keywords (e.g., `int`).
 - Returning 1 if any of the keywords find a match.
+
+**Grammar Notabilities**
+- Operator precedence was implimented, with `*`, `/`, & `%`, having precedence over `+` & `-`.  
+- Boolean operators do not have precedence, executing from left-to-right
+- Array declarations are handled properly
+- `for` loops are handled
