@@ -1,17 +1,18 @@
 # Grammar
-## N: Non-terminals
+**N: Non-terminals**
 ```
 N = { 
     Program, Statement, Declaration, VariableDeclaration, Assignment, Expression, BooleanExpression, 
     RelationalExpression, ExpressionList, Term, Factor, Keyword, StringLiteral, RepeatUntil, ForLoop,  
 } 
 ```
+<br>
 
-## T: Terminals
+**T: Terminals**
 ```
 T = { 
     id, number,
-    +, -, *, /, &,
+    +, -, *, /, %, &,
     ==, <, >, <=, >=, !, ||, &&,
     ,, (, ), {, }, [, ], ;,
     =, 
@@ -22,8 +23,9 @@ T = {
     ERROR
 }
 ```
+<br>
 
-## P: Production Rules
+**P: Production Rules**
 ```
 Program -> Statement | Statement Program
 
@@ -43,7 +45,7 @@ RelationalExpression -> Expression == Expression | Expression != Expression | Ex
 
 ExpressionList -> Expression | Expression , ExpressionList
 
-Term -> Term * Factor | Term / Factor | Factor
+Term -> Term * Factor | Term / Factor | Term % Factor | Factor
 
 Factor -> id | number | StringLiteral | ( Expression )
 
@@ -55,8 +57,9 @@ RepeatUntilStatement -> repeat { Program } until ( BooleanExpression ) ;
 
 ForLoopStatement -> for ( VariableDeclaration ; BooleanExpression ; Expression ) { Program }
 ```
+<br>
 
-## S: Start Symbol
+**S: Start Symbol**
 ```
 S = Program
 ```

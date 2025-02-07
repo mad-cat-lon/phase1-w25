@@ -3,7 +3,7 @@ This submission contains lexer.c, tokens.h, and multiple documentation files (RE
 
 
 ### Group 13 Members
-Cyrus Fung \
+Cyrus Fung - 20225260 \
 Justin Chen - 20235414 \
-Eric Ryu \
+Eric Ryu - 20232970 \
 Kile Kim
