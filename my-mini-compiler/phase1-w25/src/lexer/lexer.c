@@ -198,6 +198,10 @@ Token get_next_token(const char *input, int *pos) {
         if (isalpha(c)) {
             token.type = TOKEN_ERROR;
             token.error = ERROR_INVALID_NUMBER;
+            while(isalpha(c) || isdigit(c)){
+                (*pos)++;
+                c = input[*pos];
+            }
         } else {
             token.type = TOKEN_NUMBER;
         }
@@ -281,6 +285,7 @@ Token get_next_token(const char *input, int *pos) {
         if ((c == '+' || c == '-' || c == '*' || c == '/') && (next_c == '+' || next_c == '-' || next_c == '*' || next_c == '/')) {
             token.type = TOKEN_ERROR;
             token.error = ERROR_CONSECUTIVE_OPERATORS;
+            (*pos)++;
             return token;
         }
         /* Check for double-character operators (==, !=, etc.) */
